@@ -53,7 +53,7 @@ def _looks_like_iso_bmff(data: bytes) -> bool:
 def _has_audio_track(data: bytes) -> bool:
     # ISO BMFF handler boxes identify audio streams with the fourcc ``soun``.
     # This is deliberately conservative: if the marker exists anywhere in the
-    # accepted MP4/MOV container, VeilGraph reports audio as present and the
+    # accepted MP4/MOV container, MosaicGuard reports audio as present and the
     # protected export removes it completely.
     return b"soun" in data
 

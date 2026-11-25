@@ -66,12 +66,12 @@ async def lifespan(_: FastAPI):
 
 
 app = FastAPI(
-    title="VeilGraph",
+    title="MosaicGuard",
     version=settings.version,
     description=(
-        "Local-first privacy compiler with Identity Exposure Graph, L1–L5 transformations, "
-        "fail-closed adversarial verification, cryptographic retention expiry, signed proof "
-        "packages and Phase-2 production/security/scale controls."
+        "Campus privacy-release guardian with identity exposure graphs, L1–L5 transformations, "
+        "fail-closed adversarial verification, human oversight, cryptographic retention expiry, "
+        "and signed proof packages."
     ),
     lifespan=lifespan,
 )

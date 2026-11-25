@@ -454,7 +454,7 @@ function CompetitionProgress({
     { label: 'Prove', detail: 'Signed release evidence', done: certified },
   ]
   return (
-    <section className="competition-progress" aria-label="VeilGraph competition workflow">
+    <section className="competition-progress" aria-label="MosaicGuard competition workflow">
       <div className="competition-progress-title">
         <span>JUDGE FLOW</span>
         <strong>Detect → Transform → Attack → Prove</strong>
@@ -474,17 +474,20 @@ function CompetitionProgress({
 
 function BrandLockup() {
   return (
-    <div className="brand-lockup" aria-label="VeilGraph Privacy Intelligence">
-      <img className="brand-wordmark brand-wordmark-light" src="/veilgraph-brand-light.png" alt="VeilGraph Privacy Intelligence" />
-      <img className="brand-wordmark brand-wordmark-dark" src="/veilgraph-brand-dark.png" alt="" aria-hidden="true" />
+    <div className="brand-lockup" aria-label="MosaicGuard Privacy Intelligence">
+      <span className="brand-mark" aria-hidden="true">M</span>
+      <div className="brand-copy">
+        <strong>MOSAIC<span>GUARD</span></strong>
+        <small>CAMPUS PRIVACY AGENT</small>
+      </div>
     </div>
   )
 }
 
 export default function App() {
   const [status, setStatus] = useState<OfflineStatus | null>(null)
-  const [purpose, setPurpose] = useState('Public evidence release')
-  const [recipient, setRecipient] = useState('Citizen information portal')
+  const [purpose, setPurpose] = useState('Campus public-information release')
+  const [recipient, setRecipient] = useState('Students, families, and public visitors')
   const [audience, setAudience] = useState<AudienceProfile>('PUBLIC_RELEASE')
   const [privacyLevel, setPrivacyLevel] = useState<PrivacyLevel>(4)
   const [retentionSeconds, setRetentionSeconds] = useState(3600)
@@ -982,7 +985,7 @@ export default function App() {
         </div>
       </header>
 
-      {error && <div className="system-alert"><strong>VeilGraph could not complete that action.</strong><span>{error}</span><button onClick={() => setError(null)}>Dismiss</button></div>}
+      {error && <div className="system-alert"><strong>MosaicGuard could not complete that action.</strong><span>{error}</span><button onClick={() => setError(null)}>Dismiss</button></div>}
       {busy && <div className="busy-float"><i /><span>{busy === 'create' ? 'Creating secure workspace' : busy === 'upload' ? 'Encrypting upload' : busy === 'analyse' ? 'Mapping identity exposure' : busy === 'graph' ? 'Compiling privacy graph' : busy === 'review' ? 'Recording review decision' : busy === 'transform' ? 'Applying privacy transformation' : busy === 'verify' ? 'Running Privacy Red Team' : 'Destroying workspace'}</span></div>}
 
       {!analysis || !fileRecord ? (
@@ -1000,7 +1003,7 @@ export default function App() {
 
           <section className="intake-surface">
             <div className="surface-heading">
-              <div><span className="overline">NEW RELEASE</span><h2>Set the release intent</h2><p>Define who receives the data. VeilGraph will recommend and enforce the minimum safe policy.</p></div>
+              <div><span className="overline">NEW RELEASE</span><h2>Set the release intent</h2><p>Define who receives the data. MosaicGuard will recommend and enforce the minimum safe policy.</p></div>
               <div className="security-note"><i /><span><strong>Processed on this device</strong>Input is encrypted before workspace persistence.</span></div>
             </div>
 
@@ -1037,7 +1040,7 @@ export default function App() {
                   <small>{selectedFile ? `${(selectedFile.size / 1024 / 1024).toFixed(2)} MB · stays inside this workspace` : 'Drag and drop or click to browse'}</small>
                 </label>
                 <button className="action-button primary-action" onClick={createUploadAnalyse} disabled={busy !== null || !selectedFile}><span>{busy ? 'Working…' : 'Analyse identity exposure'}</span><i>→</i></button>
-                <p className="microcopy">VeilGraph does not send operational content to external AI services.</p>
+                <p className="microcopy">MosaicGuard does not send operational content to external AI services.</p>
               </div>
             </div>
           </section>
@@ -1046,7 +1049,7 @@ export default function App() {
         <main className="workspace-shell page-enter">
           <section className="case-bar">
             <div className="case-identity"><span className="overline">ACTIVE RELEASE</span><strong>{fileRecord.original_filename}</strong><small>{audienceLabels[job.audience_profile]} · {analysis.file_type}</small></div>
-            <nav className="workspace-nav" aria-label="VeilGraph privacy workflow">
+            <nav className="workspace-nav" aria-label="MosaicGuard privacy workflow">
               {workflowSteps.map((step, index) => {
                 const available = stepAvailability[step.key]
                 const completed = step.key === 'understand' ? Boolean(graph) : step.key === 'protect' ? Boolean(transformed) : step.key === 'verify' ? verification?.status === 'VERIFIED_SAFE' : Boolean(certificate)
@@ -1160,7 +1163,7 @@ export default function App() {
                     <div className={`attack-matrix ${busy === 'verify' ? 'running' : ''}`} aria-label={`${attackCount} mandatory privacy attacks`}><div className="attack-matrix-grid">{Array.from({ length: attackCount }, (_, index) => <i key={index}><span>{String(index + 1).padStart(2,'0')}</span></i>)}</div><strong>{attackCount}</strong><span>fail-closed adversarial gates</span><small>Signed gate names bind when the result returns.</small></div>
                     <span className="overline">PRIVACY RED TEAM</span>
                     <h2>Release is locked.</h2>
-                    <p>{transformed.transformations_applied} exposure regions changed. VeilGraph will now attack the protected artifact through {attackCount} mandatory fail-closed checks.</p>
+                    <p>{transformed.transformations_applied} exposure regions changed. MosaicGuard will now attack the protected artifact through {attackCount} mandatory fail-closed checks.</p>
                     <div className="transformation-summary"><div><span>Exposure</span><strong>{transformed.risk_before}<i>→</i>{transformed.residual_risk}</strong></div><div><span>Utility retained</span><strong>{transformed.utility_score}%</strong></div></div>
                     {syntheticEvidence && <div className="synthetic-compact"><span>L5 Synthetic Twin</span><strong>{syntheticNumber('privacy_score') ?? '—'}/100 privacy · {syntheticNumber('exact_row_copies') ?? '—'} exact copies</strong></div>}
                     <button className="action-button primary-action" disabled={busy !== null} onClick={verify}><span>{busy === 'verify' ? 'Attacking artifact…' : `Run ${attackCount}-attack verification`}</span><i>→</i></button>

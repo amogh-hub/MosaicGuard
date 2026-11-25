@@ -34,7 +34,7 @@ class AdmissionController:
         try:
             await asyncio.wait_for(self._semaphore.acquire(), timeout=self.queue_timeout_seconds)
         except TimeoutError as exc:
-            raise AdmissionRejected("VeilGraph heavy-operation concurrency limit reached") from exc
+            raise AdmissionRejected("MosaicGuard heavy-operation concurrency limit reached") from exc
         async with self._lock:
             self._active += 1
             self._max_active = max(self._max_active, self._active)

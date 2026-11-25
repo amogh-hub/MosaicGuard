@@ -350,7 +350,7 @@ def build_exposure_graph(
             "direct": after_parts[0], "quasi_identifier": after_parts[1],
             "relationship": after_parts[2], "combination_bonus": after_parts[3],
         },
-        "disclaimer": "VeilGraph Residual Exposure Score is a calibrated product risk indicator, not a legal guarantee of anonymity.",
+        "disclaimer": "MosaicGuard Residual Exposure Score is a calibrated product risk indicator, not a legal guarantee of anonymity.",
     }
     payload: dict[str, Any] = {
         "job_id": job["id"],

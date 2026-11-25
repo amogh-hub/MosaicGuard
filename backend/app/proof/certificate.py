@@ -49,7 +49,7 @@ def issue_certificate(
     payload = {
         "schema": CERTIFICATE_SCHEMA,
         "certificate_id": f"VG-{cert_short}",
-        "product": "VeilGraph",
+        "product": "MosaicGuard",
         "product_version": settings.version,
         "issued_at": issued_at,
         "verified_at": verified_at,
@@ -76,7 +76,7 @@ def issue_certificate(
             "public_key_sha256": signer_fingerprint(),
         },
         "disclaimer": (
-            "This certificate proves VeilGraph's listed local checks and artifact hashes for this output. "
+            "This certificate proves MosaicGuard's listed local checks and artifact hashes for this output. "
             "It is not a legal or mathematical guarantee of anonymity against every external dataset or future attack."
         ),
     }
@@ -109,7 +109,7 @@ def certificate_pdf(certificate: dict[str, Any], verification: dict[str, Any]) -
 
     y = height - 22 * mm
     pdf.setFont("Helvetica-Bold", 21)
-    pdf.drawString(20 * mm, y, "VeilGraph Privacy Proof Certificate")
+    pdf.drawString(20 * mm, y, "MosaicGuard Privacy Proof Certificate")
     y -= 10 * mm
     pdf.setFont("Helvetica", 9)
     pdf.drawString(20 * mm, y, "Offline-signed evidence for a proof-gated protected artifact")
@@ -187,7 +187,7 @@ def build_proof_bundle(
         "veilgraph-manifest.json": json.dumps(manifest, indent=2, sort_keys=True).encode("utf-8"),
         "identity-exposure-graph.json": json.dumps(identity_exposure_graph, indent=2, sort_keys=True).encode("utf-8"),
         "VERIFY_OFFLINE.txt": (
-            f"VeilGraph proof bundle {cert_id}\n\n"
+            f"MosaicGuard proof bundle {cert_id}\n\n"
             "This bundle is independently recomputable: it contains the protected artifact, signed certificate, "
             "manifest, Identity Exposure Graph, verification payload and certification-time audit ledger.\n\n"
             "Recommended verification: download the complete proof package and run\n"
@@ -225,7 +225,7 @@ def issue_destruction_receipt(
 ) -> dict[str, Any]:
     payload = {
         "schema": DESTRUCTION_SCHEMA,
-        "product": "VeilGraph",
+        "product": "MosaicGuard",
         "product_version": settings.version,
         "issued_at": datetime.now(timezone.utc).isoformat(),
         "job_commitment_sha256": hashlib.sha256(job_id.encode("utf-8")).hexdigest(),

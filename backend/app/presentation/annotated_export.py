@@ -126,7 +126,7 @@ def build_annotated_export(
         "veilgraph-annotation-manifest.json": json.dumps(annotation, indent=2, sort_keys=True).encode("utf-8"),
         "veilgraph-certificate.json": json.dumps(certificate, indent=2, sort_keys=True).encode("utf-8"),
         "README.txt": (
-            "VeilGraph annotated protected-output export\n\n"
+            "MosaicGuard annotated protected-output export\n\n"
             "The protected artifact in this ZIP is the exact clean release artifact.\n"
             "PNG files under annotated-previews/ are derived analyst/judge views and are not replacements for the clean artifact.\n"
             "Labels show entity placeholder, transformation action and detector confidence; source plaintext is never written to the annotation manifest.\n"

@@ -147,7 +147,7 @@ class JobWorkspace:
                 "cleared_plaintext_entities": plaintext_count,
                 "note": (
                     "Encrypted job blobs were deleted and the in-process job keys were destroyed. "
-                    "VeilGraph does not claim forensic overwriting of SSD flash cells."
+                    "MosaicGuard does not claim forensic overwriting of SSD flash cells."
                 ),
             }
 

@@ -226,7 +226,7 @@ def offline_status() -> OfflineStatusResponse:
         device_signer_fingerprint=signer_fingerprint(),
         certificate_algorithm="Ed25519",
         statement=(
-            "VeilGraph Slice E compiles privacy locally, attacks the protected artifact through format-specific fail-closed release gates, "
+            "MosaicGuard compiles privacy locally, attacks the protected artifact through format-specific fail-closed release gates, "
             "then binds the result to a tamper-evident audit chain and Ed25519-signed proof certificate. "
             "The residual exposure and proof scores are calibrated product indicators, not legal guarantees of anonymity."
         ),
@@ -1319,6 +1319,8 @@ def proof_package(job_id: str, output_id: str) -> Response:
         media_type="application/zip",
         headers={
             "Content-Disposition": f'attachment; filename="{certificate["payload"]["certificate_id"]}-complete-proof-package.zip"',
+            "X-MosaicGuard-Bundle-SHA256": bundle_sha,
+            "X-MosaicGuard-Receipt-ID": receipt["payload"]["receipt_id"],
             "X-VeilGraph-Bundle-SHA256": bundle_sha,
             "X-VeilGraph-Receipt-ID": receipt["payload"]["receipt_id"],
         },
@@ -1413,7 +1415,7 @@ def _synthetic_export_or_423(job_id: str, output_id: str, target_format: str):
 def _synthetic_export_receipt(output: dict[str, Any], artifact) -> dict[str, Any]:
     payload = {
         "schema": "veilgraph.synthetic-format-export-receipt.v1",
-        "product": "VeilGraph",
+        "product": "MosaicGuard",
         "product_version": settings.version,
         "source_output_id": output["id"],
         "source_output_sha256": output["sha256"],
@@ -1456,6 +1458,8 @@ def synthetic_format_export(job_id: str, output_id: str, format: str = Query(...
         media_type=artifact.media_type,
         headers={
             "Content-Disposition": f'attachment; filename="{filename}"',
+            "X-MosaicGuard-Synthetic-Source-SHA256": output["sha256"],
+            "X-MosaicGuard-Synthetic-Export-SHA256": artifact.report["export_sha256"],
             "X-VeilGraph-Synthetic-Source-SHA256": output["sha256"],
             "X-VeilGraph-Synthetic-Export-SHA256": artifact.report["export_sha256"],
         },

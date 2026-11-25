@@ -11,7 +11,7 @@ from app.benchmark.veilbench import BenchmarkCase, GoldSpan, benchmark_cases
 from app.core.enums import EntityType
 
 
-# Mapping covers the explicit VeilGraph v2 PII taxonomy. Unmapped labels remain
+# Mapping covers the explicit MosaicGuard v2 PII taxonomy. Unmapped labels remain
 # counted and disclosed rather than silently treated as negatives.
 # Unmapped OpenPII labels are counted and reported, never silently treated as
 # negatives. This prevents inflated metrics through accidental label dropping.
@@ -191,7 +191,7 @@ def load_openpii_jsonl(path: Path, *, limit: int = 500, language: str | None = "
 def benchmark_openpii(path: Path, *, limit: int = 500, language: str | None = "en") -> dict:
     cases, counters = load_openpii_jsonl(path, limit=limit, language=language)
     if not cases:
-        raise ValueError("No OpenPII rows with VeilGraph-supported labels were found")
+        raise ValueError("No OpenPII rows with MosaicGuard-supported labels were found")
     result = benchmark_cases(cases)
     mapped = sum(value for key, value in counters.items() if key.startswith("mapped:"))
     unmapped = sum(value for key, value in counters.items() if key.startswith("unmapped:"))
@@ -203,6 +203,6 @@ def benchmark_openpii(path: Path, *, limit: int = 500, language: str | None = "e
         "mapped_gold_spans": mapped,
         "unmapped_gold_spans": unmapped,
         "label_accounting": dict(sorted(counters.items())),
-        "evaluation_scope": "Only OpenPII entity classes explicitly mapped to VeilGraph's currently claimed taxonomy are scored. Unmapped labels are counted and disclosed.",
+        "evaluation_scope": "Only OpenPII entity classes explicitly mapped to MosaicGuard's currently claimed taxonomy are scored. Unmapped labels are counted and disclosed.",
     }
     return result

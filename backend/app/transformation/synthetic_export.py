@@ -164,7 +164,7 @@ def _docx_bytes(dataset: StructuredDataset, source_sha256: str) -> bytes:
     """Build deterministic OOXML directly so Phase 3 adds no runtime dependency."""
     tables = _tables_for_cross_format(dataset)
     body = [
-        _docx_paragraph("VeilGraph Synthetic Twin Export", bold=True, size_half_points=32),
+        _docx_paragraph("MosaicGuard - VeilGraph Synthetic Twin Export", bold=True, size_half_points=32),
         _docx_paragraph(
             "This document is a representation of an already-generated Level 5 Synthetic Twin. "
             "It does not regenerate values and therefore does not reintroduce source records."
@@ -203,16 +203,16 @@ def _docx_bytes(dataset: StructuredDataset, source_sha256: str) -> bytes:
 </Relationships>'''
     core = b'''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <dc:title>VeilGraph Synthetic Twin Export</dc:title>
+  <dc:title>MosaicGuard Synthetic Twin Export</dc:title>
   <dc:subject>Verified synthetic data representation</dc:subject>
-  <dc:creator>VeilGraph</dc:creator>
-  <cp:lastModifiedBy>VeilGraph</cp:lastModifiedBy>
+  <dc:creator>MosaicGuard</dc:creator>
+  <cp:lastModifiedBy>MosaicGuard</cp:lastModifiedBy>
   <dcterms:created xsi:type="dcterms:W3CDTF">1980-01-01T00:00:00Z</dcterms:created>
   <dcterms:modified xsi:type="dcterms:W3CDTF">1980-01-01T00:00:00Z</dcterms:modified>
 </cp:coreProperties>'''
     app = b'''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">
-  <Application>VeilGraph</Application>
+  <Application>MosaicGuard</Application>
   <AppVersion>13.1</AppVersion>
 </Properties>'''
 
@@ -244,12 +244,12 @@ def _pdf_bytes(dataset: StructuredDataset, source_sha256: str) -> bytes:
         rightMargin=24,
         topMargin=28,
         bottomMargin=28,
-        title="VeilGraph Synthetic Twin Export",
-        author="VeilGraph",
+        title="MosaicGuard Synthetic Twin Export",
+        author="MosaicGuard",
     )
     styles = getSampleStyleSheet()
     story: list[Any] = [
-        Paragraph("VeilGraph Synthetic Twin Export", styles["Title"]),
+        Paragraph("MosaicGuard Synthetic Twin Export", styles["Title"]),
         Spacer(1, 8),
         Paragraph(
             "Representation of an already-generated Level 5 Synthetic Twin. Values are not regenerated during export.",

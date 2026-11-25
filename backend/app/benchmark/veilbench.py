@@ -267,7 +267,7 @@ def benchmark_curated(corpus_path: Path) -> dict:
     result = benchmark_cases(cases, prediction_scope=prediction_scope)
     result["dataset"] = {
         "name": "VeilBench Curated Identity Exposure Corpus v1",
-        "source": "VeilGraph project",
+        "source": "MosaicGuard project",
         "license": "CC0-1.0",
         "contains_real_pii": False,
         "purpose": "Internal reproducible accuracy regression; this is not the required external open-source benchmark.",

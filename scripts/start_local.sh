@@ -27,7 +27,7 @@ npm run dev -- --host 127.0.0.1 &
 FRONTEND_PID=$!
 
 cat <<'TXT'
-VeilGraph Slice E is running.
+MosaicGuard campus privacy agent is running.
 UI:  http://127.0.0.1:5173
 API: http://127.0.0.1:8000/docs
 
@@ -36,6 +36,6 @@ Levels: L1 direct masking, L2 opaque pseudonymization, L3 context generalization
 Proof gate: 12 mandatory attacks for non-video Levels 1–4, 13 for video (including full-timeline change screening and independent QR recovery attack), and 15 for Level 5; VERIFIED_SAFE outputs receive an Ed25519 certificate and tamper-evident audit proof.
 Retention: user-selected 1 minute–24 hour encrypted workspace TTL; a lifecycle worker erases expired jobs and leaves only a signed destruction tombstone. Jobs surviving a process restart are erased immediately because their RAM-only keys are unrecoverable.
 No installation or model download occurs in this startup script.
-For the competition proof, disable Wi-Fi before starting the demo.
+For the isolated security demonstration, disable Wi-Fi before starting the demo.
 TXT
 wait

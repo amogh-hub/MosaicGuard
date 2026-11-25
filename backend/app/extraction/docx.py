@@ -638,7 +638,7 @@ def _scrub_xml_tree(root: ET.Element) -> None:
                 child.attrib.pop("descr", None)
                 child.attrib.pop("title", None)
                 if "name" in child.attrib:
-                    child.attrib["name"] = "VeilGraph media"
+                    child.attrib["name"] = "MosaicGuard media"
 
 
 def _serialize_opc_default_namespace(root: ET.Element, namespace: str) -> bytes:

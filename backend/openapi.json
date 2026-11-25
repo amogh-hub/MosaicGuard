@@ -1,8 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "VeilGraph",
-    "description": "Local-first privacy compiler with Identity Exposure Graph, L1\u2013L5 transformations, fail-closed adversarial verification, cryptographic retention expiry, signed proof packages and Phase-2 production/security/scale controls.",
+    "title": "MosaicGuard",
+    "description": "Campus privacy-release guardian with identity exposure graphs, L1\u2013L5 transformations, fail-closed adversarial verification, human oversight, cryptographic retention expiry, and signed proof packages.",
     "version": "0.6.1-phase2-final-hardening"
   },
   "paths": {

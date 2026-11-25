@@ -1553,7 +1553,7 @@ def _video_replacement_presence_from_text(text: str, instructions: list[Protecti
 
 
 def _decode_qr_payloads_independent(image: Image.Image) -> set[str]:
-    """Aggressively decode QR payloads without using VeilGraph detection records.
+    """Aggressively decode QR payloads without using MosaicGuard detection records.
 
     The release gate deliberately calls OpenCV directly over protected video
     pixels and tries several deterministic render variants. It does not reuse
@@ -1597,7 +1597,7 @@ def video_visual_identifier_rescan(protected: bytes) -> TestResult:
 
     OCR gates cannot establish that a visual code is unreadable. This critical
     video-only gate therefore attacks the raster timeline directly and fails on
-    any decodable QR payload, regardless of whether it appeared in VeilGraph's
+    any decodable QR payload, regardless of whether it appeared in MosaicGuard's
     original entity inventory.
     """
     temp_path: str | None = None

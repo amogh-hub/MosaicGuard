@@ -42,12 +42,12 @@ def _audit_hook(event: str, args: tuple[Any, ...]) -> None:
     if event == "socket.getaddrinfo":
         host = str(args[0]) if args else ""
         if not _is_loopback_literal(host):
-            raise OSError(f"VeilGraph offline mode blocked DNS resolution for {host}")
+            raise OSError(f"MosaicGuard offline mode blocked DNS resolution for {host}")
     elif event == "socket.connect":
         address = args[1] if len(args) > 1 else ""
         host = _host_from_address(address)
         if not _is_loopback_literal(host):
-            raise OSError(f"VeilGraph offline mode blocked external connection to {host}")
+            raise OSError(f"MosaicGuard offline mode blocked external connection to {host}")
 
 
 def install_egress_guard() -> None:
@@ -62,7 +62,7 @@ def install_egress_guard() -> None:
     def guarded_create_connection(address, *args, **kwargs):
         host = _host_from_address(address)
         if not _is_loopback_literal(host):
-            raise OSError(f"VeilGraph offline mode blocked external connection to {host}")
+            raise OSError(f"MosaicGuard offline mode blocked external connection to {host}")
         return _original_create_connection(address, *args, **kwargs)
 
     socket.create_connection = guarded_create_connection

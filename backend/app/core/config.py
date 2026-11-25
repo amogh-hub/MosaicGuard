@@ -7,7 +7,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="VEILGRAPH_", extra="ignore")
 
-    app_name: str = "VeilGraph"
+    app_name: str = "MosaicGuard"
     version: str = "0.6.1-phase2-final-hardening"
     offline_mode: bool = True
     bind_host: str = "127.0.0.1"
